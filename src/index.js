@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom';
 import './index.css';
 
 
@@ -64,16 +64,16 @@ function Square(props) {
 
 function Board() {
   const squares = Array(9).fill(null);
-  const xIsNext = true;
   const [board, setBoard] = useState(squares);
+  const [xIsNext, setXIsNext] = useState(true);
+
+  setXIsNext(true);
 
   const handleClick = (i) => {
     squares.slice();
     squares[i] = xIsNext ? 'X' : 'O';
-    setBoard(
-      squares,
-      !xIsNext,
-    );
+    setBoard(squares);
+    setXIsNext(was => !was);
   }
 
   const renderSquare = (i) => {
@@ -169,7 +169,7 @@ function calculateWinner(squares) {
 
 // ========================================
 
-// ReactDOM.render(
-//   <Game />,
-//   document.getElementById('root')
-// );
+ReactDOM.render(
+  <Game />,
+  document.getElementById('root')
+);
